@@ -10,15 +10,19 @@ module.exports = {
       },
       title: {
         type: Sequelize.STRING(200),
+        allowNull: false,
       },
       content: {
         type: Sequelize.TEXT,
+        allowNull: false,
       },
       category: {
         type: Sequelize.STRING(100),
+        allowNull: false,
       },
       status: {
         type: Sequelize.STRING(100),
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

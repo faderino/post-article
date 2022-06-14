@@ -21,6 +21,11 @@ app.use((error, req, res, next) => {
     case "NotFound":
       res.status(404).json({ message: "Data not found" });
       break;
+    case "SequelizeValidationError":
+      res
+        .status(400)
+        .json(error.errors.map((e) => ({ path: e.path, message: e.message })));
+      break;
     default:
       res.status(500).json(error);
   }
