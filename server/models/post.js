@@ -53,10 +53,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-          notEmpty: { msg: "Title is required" },
-          notNull: { msg: "Title is required" },
+          notEmpty: { msg: "Status is required" },
+          notNull: { msg: "Status is required" },
           isCorrectStatus(value) {
-            if (value !== "publish" || value !== "draft" || value !== "trash") {
+            if (value !== "publish" && value !== "draft" && value !== "trash") {
               throw new Error(
                 `Status must be either "publish", "draft", or "trash"`
               );

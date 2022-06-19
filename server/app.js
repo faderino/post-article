@@ -14,6 +14,7 @@ app.post("/article", Controller.create);
 app.get("/article/:limit/:offset", Controller.getAll);
 app.get("/article/:id", Controller.getById);
 app.put("/article/:id", Controller.edit);
+app.patch("/article/:id", Controller.updateStatus);
 app.delete("/article/:id", Controller.delete);
 
 app.use((error, req, res, next) => {
@@ -27,6 +28,7 @@ app.use((error, req, res, next) => {
         .json(error.errors.map((e) => ({ path: e.path, message: e.message })));
       break;
     default:
+      console.log(error);
       res.status(500).json(error);
   }
 });

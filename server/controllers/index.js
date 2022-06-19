@@ -51,6 +51,21 @@ module.exports = class Controller {
     }
   }
 
+  static async updateStatus(req, res, next) {
+    try {
+      const { id } = req.params;
+      const post = await Post.findByPk(+id);
+      if (!post) throw { name: "NotFound" };
+
+      const { status } = req.body;
+      await Post.update({ status }, { where: { id } });
+
+      res.status(200).json({ message: `Post with id: ${id} moved to trash` });
+    } catch (error) {
+      next(error);
+    }
+  }
+
   static async delete(req, res, next) {
     try {
       const { id } = req.params;
