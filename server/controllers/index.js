@@ -14,8 +14,12 @@ module.exports = class Controller {
 
   static async getAll(req, res, next) {
     try {
+      const { status } = req.query;
       const { limit, offset } = req.params;
       const options = { limit, offset, order: [["updatedAt", "DESC"]] };
+      if (status) {
+        options.where = { status };
+      }
       const posts = await Post.findAll(options);
 
       res.status(200).json(posts);
